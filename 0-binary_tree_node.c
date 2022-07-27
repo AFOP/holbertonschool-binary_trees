@@ -10,51 +10,32 @@
 
 binary_tree_t *binary_tree_node(binary_tree_t *parent, int value)
 {
-    binary_tree_t *node = malloc(sizeof(binary_tree_t));
-    binary_tree_t *current;
-    binary_tree_t *parent;
 
-    node->n = value;
-    node->left = NULL;
-    node->right = NULL;
+    binary_tree_t *new_node = NULL;
+
+    new_node = malloc(sizeof(binary_tree_t));
+    if (!new_node)
+    {
+        fprintf(stderr, "Error\n");
+        return (NULL);
+    }
+    if (!value)
+    {
+        free(new_node);
+        fprintf(stderr, "Error");
+        return (NULL);
+    }
+    new_node->n = value;
+    new_node->left = NULL;
+    new_node->right = NULL;
 
     if (parent == NULL)
-    {
-        parent = node;
-    }
-    else
-    {
-        current = node;
-        parent = NULL;
-        while (1)
-        {
-            parent = current;
+	{
+		new_node->parent = NULL;
+		return (new_node);
+	}
 
-            // go to left of the tree
-            if (value < parent->n)
-            {
-                current = current->left;
+	new_node->parent = parent;
 
-                // insert to the left
-                if (current == NULL)
-                {
-                    parent->left = node;
-                    return;
-                }
-            }
-
-            // go to right of the tree
-            else
-            {
-                current = current->right;
-
-                // insert to the right
-                if (current == NULL)
-                {
-                    parent->right = node;
-                    return;
-                }
-            }
-        }
-    }
+	return (new_node);
 }
