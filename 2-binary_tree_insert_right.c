@@ -8,24 +8,29 @@
  * Your function must return a pointer to the created node, or NULL on failure or if parent is NULL
  * If parent already has a left-child, the new node must take its place, and the old left-child must be set as the left-child of the new node.
  */
-
-binary_tree_t *binary_tree_insert_left(binary_tree_t *parent, int value)
+binary_tree_t *binary_tree_insert_right(binary_tree_t *parent, int value)
 {
-	binary_tree_t *new_node = NULL, *actual_node = NULL;
+        binary_tree_t *new_node;
+        
+        if (parent == NULL)
+        {
+                return (NULL);
+        }
 
 	new_node = binary_tree_node(parent, value);
+        if (new_node == NULL)
+        {
+                return(NULL);
+        }
+        if (parent->right != NULL)
+        {
+                new_node->right = parent->right;
+                parent->right->parent = new_node;
+        }
+        parent->right = new_node;
 
-	if (parent->right)
-	{
-		actual_node = parent->right;
-		parent->right = new_node;
-		new_node->right = actual_node;
-		actual_node->parent = new_node;
-	}
-	else
-	{
-		parent->right = new_node;
-	}
-
-	return (new_node);
+        return (new_node);
 }
+
+
+
