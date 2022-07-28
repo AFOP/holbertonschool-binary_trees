@@ -1,9 +1,9 @@
 #include "binary_trees.h"
 /**
- * max -binary_tree_preorder
+ * max - binary_tree_preorder
  * @a: variable
  * @b: variable
- * @return height
+ * Return: a or b
  */
 int max(int a, int b)
 {
@@ -14,8 +14,7 @@ int max(int a, int b)
 /**
  * height -binary_tree_preorder
  * @tree: tree
- * @func: func
- * @max: max
+ * Return: height
  */
 size_t height(const binary_tree_t *tree)
 {
@@ -24,10 +23,9 @@ size_t height(const binary_tree_t *tree)
 	return (max(height(tree->left), height(tree->right)) + 1);
 }
 /**
- * binary_tree_height -binary_tree_preorder
- *
- * @tree: tree
- * @func: func
+ * binary_tree_height - function that measures the height of a binary tree
+ * @tree: is a pointer to the root node of the tree to measure the height
+ * Return: height or 0 in case error
  */
 size_t binary_tree_height(const binary_tree_t *tree)
 {
